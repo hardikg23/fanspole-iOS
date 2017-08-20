@@ -49,9 +49,15 @@ class LoginController: UIViewController {
     }
     
     func setUserDefaults(jsonResponse: JSON) {
-        UserDefaults.standard.setIsLoggedIn(value: false)
+        UserDefaults.standard.setIsLoggedIn(value: true)
         UserDefaults.standard.setAccessToken(value: jsonResponse["access_token"].string!)
         UserDefaults.standard.setRefreshToken(value: jsonResponse["refresh_token"].string!)
+        
+        self.performSegue(withIdentifier: "successLoginSegueIdentifier", sender: nil)
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        var vc: UIViewController?
+//        vc = storyboard.instantiateInitialViewController()
         
     }
     
