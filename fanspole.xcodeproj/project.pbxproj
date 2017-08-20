@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		5675436A1F49A6990057F3F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543691F49A6990057F3F2 /* AppDelegate.swift */; };
-		5675436C1F49A6990057F3F2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436B1F49A6990057F3F2 /* FirstViewController.swift */; };
-		5675436E1F49A6990057F3F2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436D1F49A6990057F3F2 /* SecondViewController.swift */; };
+		5675436C1F49A6990057F3F2 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436B1F49A6990057F3F2 /* HomeController.swift */; };
+		5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436D1F49A6990057F3F2 /* LeaderboardController.swift */; };
 		567543711F49A6990057F3F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5675436F1F49A6990057F3F2 /* Main.storyboard */; };
 		567543731F49A6990057F3F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 567543721F49A6990057F3F2 /* Assets.xcassets */; };
 		567543761F49A6990057F3F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567543741F49A6990057F3F2 /* LaunchScreen.storyboard */; };
 		5675437E1F49A7090057F3F2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675437D1F49A7090057F3F2 /* LoginController.swift */; };
 		567543811F49B2B20057F3F2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543801F49B2B20057F3F2 /* UIViewController.swift */; };
 		567543831F49B5E90057F3F2 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543821F49B5E90057F3F2 /* UserDefaults.swift */; };
+		5675438B1F49DC8A0057F3F2 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675438A1F49DC8A0057F3F2 /* EventCell.swift */; };
 		9B9344811141995D9FC49BB4 /* Pods_fanspole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0253656CB76C0D1B1883374 /* Pods_fanspole.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,8 +25,8 @@
 		51E97C11076DE669DE040290 /* Pods-fanspole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fanspole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fanspole/Pods-fanspole.debug.xcconfig"; sourceTree = "<group>"; };
 		567543661F49A6990057F3F2 /* fanspole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fanspole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567543691F49A6990057F3F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5675436B1F49A6990057F3F2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		5675436D1F49A6990057F3F2 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		5675436B1F49A6990057F3F2 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		5675436D1F49A6990057F3F2 /* LeaderboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardController.swift; sourceTree = "<group>"; };
 		567543701F49A6990057F3F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		567543721F49A6990057F3F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		567543751F49A6990057F3F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +34,7 @@
 		5675437D1F49A7090057F3F2 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		567543801F49B2B20057F3F2 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		567543821F49B5E90057F3F2 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		5675438A1F49DC8A0057F3F2 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		A0253656CB76C0D1B1883374 /* Pods_fanspole.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fanspole.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,13 +81,12 @@
 			isa = PBXGroup;
 			children = (
 				567543691F49A6990057F3F2 /* AppDelegate.swift */,
-				5675436B1F49A6990057F3F2 /* FirstViewController.swift */,
-				5675436D1F49A6990057F3F2 /* SecondViewController.swift */,
+				5675438D1F49EA750057F3F2 /* Controllers */,
+				5675438C1F49EA640057F3F2 /* Views */,
 				5675436F1F49A6990057F3F2 /* Main.storyboard */,
 				567543721F49A6990057F3F2 /* Assets.xcassets */,
 				567543741F49A6990057F3F2 /* LaunchScreen.storyboard */,
 				567543771F49A6990057F3F2 /* Info.plist */,
-				5675437D1F49A7090057F3F2 /* LoginController.swift */,
 				5675437F1F49B2A00057F3F2 /* Extension */,
 			);
 			path = fanspole;
@@ -98,6 +99,24 @@
 				567543821F49B5E90057F3F2 /* UserDefaults.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		5675438C1F49EA640057F3F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5675438A1F49DC8A0057F3F2 /* EventCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5675438D1F49EA750057F3F2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5675436D1F49A6990057F3F2 /* LeaderboardController.swift */,
+				5675436B1F49A6990057F3F2 /* HomeController.swift */,
+				5675437D1F49A7090057F3F2 /* LoginController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		C58E2931763C4A89BD0BF3CB /* Frameworks */ = {
@@ -231,12 +250,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5675436E1F49A6990057F3F2 /* SecondViewController.swift in Sources */,
+				5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */,
 				5675437E1F49A7090057F3F2 /* LoginController.swift in Sources */,
 				567543831F49B5E90057F3F2 /* UserDefaults.swift in Sources */,
 				5675436A1F49A6990057F3F2 /* AppDelegate.swift in Sources */,
-				5675436C1F49A6990057F3F2 /* FirstViewController.swift in Sources */,
+				5675436C1F49A6990057F3F2 /* HomeController.swift in Sources */,
 				567543811F49B2B20057F3F2 /* UIViewController.swift in Sources */,
+				5675438B1F49DC8A0057F3F2 /* EventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
