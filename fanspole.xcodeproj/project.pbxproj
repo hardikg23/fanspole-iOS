@@ -17,6 +17,7 @@
 		567543811F49B2B20057F3F2 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543801F49B2B20057F3F2 /* UIViewController.swift */; };
 		567543831F49B5E90057F3F2 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543821F49B5E90057F3F2 /* UserDefaults.swift */; };
 		5675438B1F49DC8A0057F3F2 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675438A1F49DC8A0057F3F2 /* EventCell.swift */; };
+		567543A21F49FCB70057F3F2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543A11F49FCB70057F3F2 /* Event.swift */; };
 		9B9344811141995D9FC49BB4 /* Pods_fanspole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0253656CB76C0D1B1883374 /* Pods_fanspole.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		567543801F49B2B20057F3F2 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		567543821F49B5E90057F3F2 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		5675438A1F49DC8A0057F3F2 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		567543A11F49FCB70057F3F2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A0253656CB76C0D1B1883374 /* Pods_fanspole.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fanspole.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 		567543681F49A6990057F3F2 /* fanspole */ = {
 			isa = PBXGroup;
 			children = (
+				5675439F1F49FCA00057F3F2 /* Models */,
 				567543691F49A6990057F3F2 /* AppDelegate.swift */,
 				5675438D1F49EA750057F3F2 /* Controllers */,
 				5675438C1F49EA640057F3F2 /* Views */,
@@ -117,6 +120,14 @@
 				5675437D1F49A7090057F3F2 /* LoginController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5675439F1F49FCA00057F3F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				567543A11F49FCB70057F3F2 /* Event.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C58E2931763C4A89BD0BF3CB /* Frameworks */ = {
@@ -250,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567543A21F49FCB70057F3F2 /* Event.swift in Sources */,
 				5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */,
 				5675437E1F49A7090057F3F2 /* LoginController.swift in Sources */,
 				567543831F49B5E90057F3F2 /* UserDefaults.swift in Sources */,

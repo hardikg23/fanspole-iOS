@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var eventCollectionView: UICollectionView!
     
     let cellId = "eventCellId"
+    var events: [Event] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +28,30 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
         navigationItem.titleView = titleLabel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleSignOut))
         
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer 25ff61e87c44936b3a234d7a7a5a4f2fce75319cdd37f23580221c7277f08bf4",
+            "X-Fanspole-Client": "254b4f821a12144966c43444039dca21b97dde0be39b1fc1d2f573228dea6bbb"
+        ]
+        Alamofire.request("http://localhost:3000/api/v2/users/cards",method: .get, headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let eventsJsonArray = json["data"]["upcoming_matches"].array {
+                    self.events = eventsJsonArray.map{Event(json: $0)}
+                    self.eventCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error);
+            }
+        }
         self.eventCollectionView.delegate = self
         self.eventCollectionView.dataSource = self
-
-        
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return events.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,9 +69,12 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width - 20, height: 180)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        eventCollectionView.frame = CGRect(x: 0, y: 10, width: view.frame.width, height: view.frame.height)
     }
 
     func handleSignOut() {
