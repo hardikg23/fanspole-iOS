@@ -9,10 +9,13 @@
 import UIKit
 
 class LeaderboardController: UIViewController {
+    
+    var matchId: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("matchId  id \(String(describing: matchId))")
     }
 
     override func didReceiveMemoryWarning() {

@@ -19,6 +19,8 @@ class EventCell: UICollectionViewCell{
     @IBOutlet weak var eventTeamOneImage: UIImageView!
     @IBOutlet weak var eventTeamTwoImage: UIImageView!
     
+    @IBOutlet weak var leaderboardButton: UIButton!
+    
     var datasourceItem: Any?{
         didSet{
             guard let event = datasourceItem as? Event else { return }
@@ -30,12 +32,5 @@ class EventCell: UICollectionViewCell{
             eventTeamOneImage.loadImageUsingCache(withUrl: event.teamOne.flagPhoto)
             eventTeamTwoImage.loadImageUsingCache(withUrl: event.teamTwo.flagPhoto)
         }
-    }
-    
-    @IBAction func leagueButton(_ sender: Any) {
-        print(classEvent)
-    }
-    
-    @IBAction func leaderboardButton(_ sender: UIButton) {
     }
 }

@@ -10,13 +10,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-protocol HomeControllerDelegate: class {
-    func clickOnLeaderBoard(matchId: Int)
-    func clickOnViewTeam(matchId: Int)
-}
 
 class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     @IBOutlet weak var eventCollectionView: UICollectionView!
     
     let cellId = "eventCellId"
@@ -62,11 +58,30 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
         cell.datasourceItem = events[indexPath.row]
+//        To send match ID directly in tag
+//        cell.leaderboardButton.tag = events[indexPath.row].id
+//        to send index of event object
+        cell.leaderboardButton.tag = indexPath.row
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - 20, height: 190)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "leaderboardSegue" {
+            let leaderboardVC = segue.destination as! LeaderboardController
+//        To send match ID directly in tag
+//            if let matchId = (sender as AnyObject).tag {
+//                leaderboardVC.matchId = matchId
+//            }
+//        To send index of event object
+            if let index = (sender as AnyObject).tag {
+                leaderboardVC.matchId = events[index].id
+            }
+
+        }
     }
     
     override func viewDidLayoutSubviews() {
