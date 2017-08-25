@@ -8,5 +8,6 @@ target 'fanspole' do
   # Pods for fanspole
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
+  pod 'RealmSwift'
 
 end

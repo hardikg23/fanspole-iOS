@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EventCell: UICollectionViewCell{
     
-    var classEvent: Event?
-//    open var datasourceItem: Any?
+    let realm = try! Realm()
     
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventTeams: UILabel!
@@ -21,16 +21,20 @@ class EventCell: UICollectionViewCell{
     
     @IBOutlet weak var leaderboardButton: UIButton!
     
-    var datasourceItem: Any?{
+    var datasourceEvent: Any?{
         didSet{
-            guard let event = datasourceItem as? Event else { return }
-            classEvent = event
+            guard let event = datasourceEvent as? Event else { return }
+    
+            let teamOne = realm.objects(Team.self).filter("id = \(event.teamOneId)").first
+            let teamTwo = realm.objects(Team.self).filter("id = \(event.teamTwoId)").first
             
             eventTitle.text = "Match \(event.matchNo) (\(event.matchStage))"
-            eventTeams.text = "\(event.teamOne.nameAttr) vs \(event.teamTwo.nameAttr)"
-            eventTime.text = "\(event.getEventLockTimeAsString())"
-            eventTeamOneImage.loadImageUsingCache(withUrl: event.teamOne.flagPhoto)
-            eventTeamTwoImage.loadImageUsingCache(withUrl: event.teamTwo.flagPhoto)
+            eventTeams.text = "\(String(describing: teamOne!.nameAttr)) vs \(teamTwo!.nameAttr)"
+            let std = StringToDate()
+            let date = std.getDateFromString(dateString: event.eventLockTime)
+            eventTime.text = "\(std.formatStringToDate(date: date))"
+            eventTeamOneImage.loadImageUsingCache(withUrl: (teamOne?.flagPhoto)!)
+            eventTeamTwoImage.loadImageUsingCache(withUrl: (teamTwo?.flagPhoto)!)
         }
     }
 }
