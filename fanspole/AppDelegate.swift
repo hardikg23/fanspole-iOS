@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         Realm.Configuration.defaultConfiguration = config
         
+        UINavigationBar.appearance().barTintColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+        application.statusBarStyle = .lightContent
+        
+        let statusBarBackgroundView = UIView()
+        statusBarBackgroundView.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let logined = UserDefaults.standard.isLoggedIn()

@@ -15,9 +15,12 @@ import RealmSwift
 class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var eventCollectionView: UICollectionView!
+    @IBOutlet weak var homeMenuCollectionView: UICollectionView!
     
     let cellId = "eventCellId"
+    let homeMenuCellId = "homeMenuCellId"
     var events: Results<Event>?
+    let menuItem = ["Live", "Upcoming", "Results"]
     lazy var realm = try! Realm()
     
     override func viewDidLoad() {
@@ -33,6 +36,7 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
         navigationItem.titleView = titleLabel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleSignOut))
         
+        homeMenuCollectionView.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
@@ -97,31 +101,95 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         self.eventCollectionView.delegate = self
         self.eventCollectionView.dataSource = self
+        self.homeMenuCollectionView.delegate = self
+        self.homeMenuCollectionView.dataSource = self
+        
+        setupHorizontalBar()
+        
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        homeMenuCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+        
     }
     
+    var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    func setupHorizontalBar() {
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
+        homeMenuCollectionView.addSubview(horizontalBarView)
+        
+        horizontalBarLeftAnchorConstraint = horizontalBarView.leftAnchor.constraint(equalTo: homeMenuCollectionView.leftAnchor)
+        horizontalBarLeftAnchorConstraint?.isActive = true
+        
+        horizontalBarView.topAnchor.constraint(equalTo: homeMenuCollectionView.topAnchor, constant: 46).isActive = true
+        horizontalBarView.widthAnchor.constraint(equalTo: homeMenuCollectionView.widthAnchor, multiplier: 1/3).isActive = true
+        horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.homeMenuCollectionView {
+            print(indexPath.item)
+            let x = CGFloat(indexPath.item) * view.frame.width / 3
+            horizontalBarLeftAnchorConstraint?.constant = x
+            UIView.animate(withDuration: 0.50, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                            self.homeMenuCollectionView.layoutIfNeeded()
+            }, completion: nil)
+        }
+//                print(indexPath.item)
+        //        let x = CGFloat(indexPath.item) * frame.width / 4
+        //        horizontalBarLeftAnchorConstraint?.constant = x
+        //
+        //        UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: {
+        //            self.layoutIfNeeded()
+        //            }, completion: nil)
+        
+//        homeController?.scrollToMenuIndex(indexPath.item)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let eventsCount = events?.count {
-            return eventsCount
+        if collectionView == self.eventCollectionView {
+            if let eventsCount = events?.count {
+                return eventsCount
+            } else {
+                return 0
+            }
         } else {
-            return 0
+            return 3
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
-        cell.datasourceEvent = events?[indexPath.row]
-//        cell.datasourceEvent = events[indexPath.row]
-//        To send match ID directly in tag
-//        cell.leaderboardButton.tag = events[indexPath.row].id
-//        to send index of event object
-        cell.leaderboardButton.tag = indexPath.row
-        cell.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
-        return cell
+        if collectionView == self.eventCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EventCell
+            cell.datasourceEvent = events?[indexPath.row]
+    //        cell.datasourceEvent = events[indexPath.row]
+    //        To send match ID directly in tag
+    //        cell.leaderboardButton.tag = events[indexPath.row].id
+    //        to send index of event object
+            cell.leaderboardButton.tag = indexPath.row
+            cell.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeMenuCellId, for: indexPath) as! HomeMenuCell
+            cell.homeMenuCellLabel.text = menuItem[indexPath.row]
+            cell.homeMenuCellLabel.textColor = UIColor.lightGray
+            cell.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 20, height: 190)
+        if collectionView == self.eventCollectionView {
+            return CGSize(width: view.frame.width - 20, height: 190)
+        }
+        else {
+            return CGSize(width: view.frame.width / 3, height: 50)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -140,7 +208,8 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     override func viewDidLayoutSubviews() {
-        eventCollectionView.frame = CGRect(x: 0, y: 10, width: view.frame.width, height: view.frame.height)
+//        homeMenuCollectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        eventCollectionView.frame = CGRect(x: 0, y: 60, width: view.frame.width, height: view.frame.height)
     }
 
     func handleSignOut() {
