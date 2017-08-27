@@ -6,8 +6,6 @@
 //  Copyright © 2017 Fanspole. All rights reserved.
 //
 
-import Foundation
-//import SwiftyJSON
 import RealmSwift
 
 class Series: Object {
@@ -19,16 +17,3 @@ class Series: Object {
         return "id"
     }
 }
-
-//struct Series {
-//    let id: Int
-//    let name: String
-//    let indexValue: Int
-//    
-//    init(json: JSON) {
-//        self.id = json["id"].intValue
-//        self.name = json["name"].stringValue
-//        self.indexValue = json["index_value"].intValue
-//    }
-//}
-//

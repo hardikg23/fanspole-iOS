@@ -19,9 +19,7 @@ class ApiService {
     func fetchEvents(order_type: String, completion: @escaping () -> ()) {
         
         let apiURL = "\(Constants.ApiScheme)://\(Constants.ApiHost)"
-        
         let parameters: Parameters = ["order_type": order_type]
-        
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
             "X-Fanspole-Client": "\(Constants.ClientValue)"
@@ -84,5 +82,60 @@ class ApiService {
             }
         }
     }
+    
+    
+    func fetchSeriesLeaderboard(seriesId: Int, completion: @escaping () -> ()) {
+        let apiURL = "\(Constants.ApiScheme)://\(Constants.ApiHost)"
+        
+        var seriesLeaderBoardURL: String = Methods.SeriesLeaderBoard
+        if let idRange = seriesLeaderBoardURL.range(of: "{id}") {
+            seriesLeaderBoardURL.replaceSubrange(idRange, with: String(seriesId))
+        }
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
+            "X-Fanspole-Client": "\(Constants.ClientValue)"
+        ]
+        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(seriesLeaderBoardURL)", method: .get, headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let membersJsonArray = json["data"]["members"].array {
+                    for membersJson in membersJsonArray {
+                    
+                        let leaderboardMember = LeaderboardMember()
+                        
+                        let user = User()
+                        user.id = membersJson["id"].intValue
+                        user.name = membersJson["display_name"].stringValue
+                        user.slug = membersJson["slug"].stringValue
+                        user.teamName = membersJson["team_name"].stringValue
+                        user.image = membersJson["image"].stringValue
+                        user.country = membersJson["country"].stringValue
+                        user.level = membersJson["cricket_level"]["level"].intValue
+                        user.levelName = membersJson["cricket_level"]["level_name"].stringValue
+                        
+                        leaderboardMember.userId = membersJson["id"].intValue
+                        leaderboardMember.user = user
+                        leaderboardMember.rank = membersJson["rank"].intValue
+                        leaderboardMember.totalScore = membersJson["total_score"].intValue
+                        leaderboardMember.eventType = "Series"
+                        leaderboardMember.eventId = seriesId
+                    
+                        try! self.realm.write() {
+                            self.realm.add(leaderboardMember, update: true)
+                        }
+                    }
+                }
+                completion()
+            case .failure(let error):
+                print(error);
+            }
+        }
+        
+        
+        
+    }
+
+    
     
 }

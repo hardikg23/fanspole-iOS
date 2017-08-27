@@ -25,6 +25,7 @@ extension ApiService {
         // MARK: Account
         static let Events = "/events"
         static let UserCards = "/users/cards"
+        static let SeriesLeaderBoard = "/series/{id}/leaderboard"
         static let MatchLeaderBoard = "/matches/{id}/leaderboard"
         static let ViewTeam = "/users/{user_id}/match/{match_id}/team"
     }
