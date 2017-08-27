@@ -19,13 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let config = Realm.Configuration(
-            schemaVersion: 2,
+            schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
                 }
         })
         Realm.Configuration.defaultConfiguration = config
         
+        UINavigationBar.appearance().barTintColor = UIColor.appThemeColor2()
+        application.statusBarStyle = .lightContent
+        
+        let statusBarBackgroundView = UIView()
+        statusBarBackgroundView.backgroundColor = UIColor.appThemeColor2()
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let logined = UserDefaults.standard.isLoggedIn()

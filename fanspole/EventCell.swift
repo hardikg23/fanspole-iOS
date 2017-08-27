@@ -20,6 +20,7 @@ class EventCell: UICollectionViewCell{
     @IBOutlet weak var eventTeamTwoImage: UIImageView!
     
     @IBOutlet weak var leaderboardButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
     
     var datasourceEvent: Any?{
         didSet{
@@ -29,12 +30,23 @@ class EventCell: UICollectionViewCell{
             let teamTwo = realm.objects(Team.self).filter("id = \(event.teamTwoId)").first
             
             eventTitle.text = "Match \(event.matchNo) (\(event.matchStage))"
-            eventTeams.text = "\(String(describing: teamOne!.nameAttr)) vs \(teamTwo!.nameAttr)"
+            if let teamOneNameAttr = teamOne?.nameAttr, let teamTwoNameAttr = teamTwo?.nameAttr {
+                eventTeams.text = "\(teamOneNameAttr) vs \(teamTwoNameAttr)"
+            }
             let std = StringToDate()
             let date = std.getDateFromString(dateString: event.eventLockTime)
             eventTime.text = "\(std.formatStringToDate(date: date))"
-            eventTeamOneImage.loadImageUsingCache(withUrl: (teamOne?.flagPhoto)!)
-            eventTeamTwoImage.loadImageUsingCache(withUrl: (teamTwo?.flagPhoto)!)
+            if let teamOneFlag = teamOne?.flagPhoto, let teamTwoFlag = teamTwo?.flagPhoto {
+                eventTeamOneImage.loadImageUsingCache(withUrl: teamOneFlag)
+                eventTeamTwoImage.loadImageUsingCache(withUrl: teamTwoFlag)
+            }
+            
+            if event.eventOrder == "next" {
+                actionButton.setTitle("Manage Team",for: .normal)
+            } else {
+                actionButton.setTitle("Teams",for: .normal)
+            }
+            
         }
     }
 }
