@@ -16,15 +16,17 @@ class ApiService {
     static let sharedInstance = ApiService()
     lazy var realm = try! Realm()
     
-    func fetchEvents(_ completion: @escaping () -> ()) {
+    func fetchEvents(order_type: String, completion: @escaping () -> ()) {
         
         let apiURL = "\(Constants.ApiScheme)://\(Constants.ApiHost)"
+        
+        let parameters: Parameters = ["order_type": order_type]
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
             "X-Fanspole-Client": "\(Constants.ClientValue)"
         ]
-        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(Methods.Events)",method: .get, headers: headers).validate().responseJSON { response in
+        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(Methods.Events)", method: .get, parameters: parameters, headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -42,6 +44,8 @@ class ApiService {
                         event.groundId = eventJson["ground"]["id"].intValue
                         event.teamOneId = eventJson["team1"].intValue
                         event.teamTwoId = eventJson["team2"].intValue
+                        event.eventType = eventJson["event_type"].stringValue
+                        event.eventOrder = order_type
                         
                         let series = Series()
                         series.id = eventJson["series"]["id"].intValue

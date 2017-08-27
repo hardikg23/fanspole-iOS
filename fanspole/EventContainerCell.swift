@@ -15,12 +15,12 @@ class EventContainerCell: UICollectionViewCell, UICollectionViewDelegate, UIColl
     
     let eventCellId = "eventCellId"
     var events: Results<Event>?
-    var eventType: String?
+    var eventOrder: String?
     
     var datasource: String?{
         didSet{
             guard let event = datasource else { return }
-            self.eventType = event
+            self.eventOrder = event
             setupViews()
         }
     }
@@ -31,10 +31,11 @@ class EventContainerCell: UICollectionViewCell, UICollectionViewDelegate, UIColl
     }
     
     func setupViews() {
-        print(self.eventType)
-        ApiService.sharedInstance.fetchEvents { () in
-            self.events = self.realm.objects(Event.self)
-            self.eventCollectionView.reloadData()
+        if let order_type = self.eventOrder {
+            ApiService.sharedInstance.fetchEvents(order_type: order_type) { () in
+                self.events = self.realm.objects(Event.self).filter("eventOrder = '\(order_type)' AND eventType = 'Match'")
+                self.eventCollectionView.reloadData()
+            }
         }
         eventCollectionView.delegate = self
         eventCollectionView.dataSource = self

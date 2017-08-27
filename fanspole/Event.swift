@@ -23,6 +23,8 @@ class Event: Object {
     dynamic var groundId = 0
     dynamic var teamOneId = 0
     dynamic var teamTwoId = 0
+    dynamic var eventType = ""
+    dynamic var eventOrder = ""
 
     override static func primaryKey() -> String? {
         return "id"

@@ -7,24 +7,23 @@
 //
 
 import UIKit
-//import RealmSwift
+import RealmSwift
 
 class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
     @IBOutlet weak var eventContainerCollectionView: UICollectionView!
-//    @IBOutlet weak var eventCollectionView: UICollectionView!
     @IBOutlet weak var homeMenuCollectionView: UICollectionView!
     
     let eventContainerCellId = "eventContainerCellId"
     let homeMenuCellId = "homeMenuCellId"
     let menuItem = ["Upcoming", "Live", "Results"]
-//    lazy var realm = try! Realm()
+    lazy var realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // print("Realm Path \(Realm.Configuration.defaultConfiguration.fileURL!)")
+         print("Realm Path \(Realm.Configuration.defaultConfiguration.fileURL!)")
         setUpNavigationBar()
         setupHorizontalBar()
         setUpCollectionView()

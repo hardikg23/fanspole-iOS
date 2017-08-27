@@ -101,8 +101,8 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ind vs Srl" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uf-FV-dK1">
-                                                                        <rect key="frame" x="146.5" y="40" width="82.5" height="24"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="team1 vs team2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uf-FV-dK1">
+                                                                        <rect key="frame" x="117.5" y="40" width="141" height="24"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -152,7 +152,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S8g-H3-w9L">
-                                                                        <rect key="frame" x="81.5" y="38" width="40" height="28"/>
+                                                                        <rect key="frame" x="52.5" y="38" width="40" height="28"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="28" id="10h-db-qXp"/>
                                                                             <constraint firstAttribute="width" constant="40" id="FQf-HD-cQE"/>
@@ -174,7 +174,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LN1-Es-4zD">
-                                                                        <rect key="frame" x="254" y="38" width="40" height="28"/>
+                                                                        <rect key="frame" x="283.5" y="38" width="40" height="28"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="40" id="2sA-Ts-DC3"/>
                                                                             <constraint firstAttribute="height" constant="28" id="ROD-0w-Pd7"/>
