@@ -20,6 +20,7 @@ class EventCell: UICollectionViewCell{
     @IBOutlet weak var eventTeamTwoImage: UIImageView!
     
     @IBOutlet weak var leaderboardButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
     
     var datasourceEvent: Any?{
         didSet{
@@ -39,6 +40,13 @@ class EventCell: UICollectionViewCell{
                 eventTeamOneImage.loadImageUsingCache(withUrl: teamOneFlag)
                 eventTeamTwoImage.loadImageUsingCache(withUrl: teamTwoFlag)
             }
+            
+            if event.eventOrder == "next" {
+                actionButton.setTitle("Manage Team",for: .normal)
+            } else {
+                actionButton.setTitle("Teams",for: .normal)
+            }
+            
         }
     }
 }

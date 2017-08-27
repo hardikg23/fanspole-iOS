@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
+//import RealmSwift
 
 class HomeController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
@@ -16,36 +16,44 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     let eventContainerCellId = "eventContainerCellId"
     let homeMenuCellId = "homeMenuCellId"
-    let menuItem = ["Upcoming", "Live", "Results"]
-    lazy var realm = try! Realm()
+    let menuItem = ["Live", "Upcoming", "Results"]
+//    lazy var realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-         print("Realm Path \(Realm.Configuration.defaultConfiguration.fileURL!)")
-        setUpNavigationBar()
+//         print("Realm Path \(Realm.Configuration.defaultConfiguration.fileURL!)")
+        setUpNavigationBarAndTabBar()
         setupHorizontalBar()
         setUpCollectionView()
     }
     
-    private func setUpNavigationBar() {
+    private func setUpNavigationBarAndTabBar() {
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
         titleLabel.text = "  Home"
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         navigationItem.titleView = titleLabel
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleSignOut))
+        self.tabBarController?.tabBar.barTintColor = UIColor.appThemeColor2()
+        let customTabBarItem:UITabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "ic_home_white")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "ic_home_white"))
+        self.tabBarItem = customTabBarItem
+        self.tabBarController?.tabBar.tintColor = UIColor.white
     }
     
     private func setUpCollectionView(){
-        homeMenuCollectionView.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+        homeMenuCollectionView.backgroundColor = UIColor.appThemeColor2()
         self.eventContainerCollectionView.delegate = self
         self.eventContainerCollectionView.dataSource = self
         self.homeMenuCollectionView.delegate = self
         self.homeMenuCollectionView.dataSource = self
+        view.layoutIfNeeded()
+        let selectedIndexPath = IndexPath(item: 1, section: 0)
+        self.homeMenuCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+        self.scrollToMenuIndex(1)
+        
     }
-    
     
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     func setupHorizontalBar() {
@@ -91,9 +99,9 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
         if collectionView == self.eventContainerCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventContainerCellId, for: indexPath) as! EventContainerCell
             if indexPath.row == 0 {
-                cell.datasource = "next"
-            } else if indexPath.row == 1 {
                 cell.datasource = "live"
+            } else if indexPath.row == 1 {
+                cell.datasource = "next"
             } else {
                 cell.datasource = "prev"
             }
@@ -102,14 +110,14 @@ class HomeController: UIViewController, UICollectionViewDelegate, UICollectionVi
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeMenuCellId, for: indexPath) as! HomeMenuCell
             cell.homeMenuCellLabel.text = menuItem[indexPath.row]
             cell.homeMenuCellLabel.textColor = UIColor.lightGray
-            cell.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+            cell.backgroundColor = UIColor.appThemeColor2()
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.eventContainerCollectionView {
-            return CGSize(width: view.frame.width, height: view.frame.height - 120)
+            return CGSize(width: view.frame.width, height: view.frame.height - 170)
         }
         else {
             return CGSize(width: view.frame.width / 3, height: 50)

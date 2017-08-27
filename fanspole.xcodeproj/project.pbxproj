@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5609404A1F53015E00DFD93E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560940491F53015E00DFD93E /* UIColor.swift */; };
 		5675436A1F49A6990057F3F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567543691F49A6990057F3F2 /* AppDelegate.swift */; };
 		5675436C1F49A6990057F3F2 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436B1F49A6990057F3F2 /* HomeController.swift */; };
 		5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5675436D1F49A6990057F3F2 /* LeaderboardController.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		1123334437890517DE62185E /* Pods-fanspole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fanspole.release.xcconfig"; path = "Pods/Target Support Files/Pods-fanspole/Pods-fanspole.release.xcconfig"; sourceTree = "<group>"; };
 		51E97C11076DE669DE040290 /* Pods-fanspole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fanspole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fanspole/Pods-fanspole.debug.xcconfig"; sourceTree = "<group>"; };
+		560940491F53015E00DFD93E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		567543661F49A6990057F3F2 /* fanspole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fanspole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567543691F49A6990057F3F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5675436B1F49A6990057F3F2 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				56BF086D1F4B36A2001E92B0 /* UIImageView.swift */,
 				56ED02EC1F50B92700D969F3 /* StringToDate.swift */,
 				56D6AFDD1F51F29A00790CE9 /* ApiServiceConstants.swift */,
+				560940491F53015E00DFD93E /* UIColor.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				567543A21F49FCB70057F3F2 /* Event.swift in Sources */,
 				567543AD1F4A11B90057F3F2 /* Ground.swift in Sources */,
 				5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */,
+				5609404A1F53015E00DFD93E /* UIColor.swift in Sources */,
 				5675437E1F49A7090057F3F2 /* LoginController.swift in Sources */,
 				567543B11F4A13520057F3F2 /* Series.swift in Sources */,
 				56D6AFDC1F51F23700790CE9 /* ApiService.swift in Sources */,

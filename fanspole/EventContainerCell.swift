@@ -51,9 +51,11 @@ class EventContainerCell: UICollectionViewCell, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: eventCellId, for: indexPath) as! EventCell
-        cell.datasourceEvent = events?[indexPath.row]
-        cell.leaderboardButton.tag = (events?[indexPath.row].id)!
-        cell.backgroundColor = UIColor(red: 31/255, green: 51/255, blue: 71/255, alpha: 1)
+        if indexPath.row < (events?.count)! {
+            cell.datasourceEvent = events?[indexPath.row]
+            cell.leaderboardButton.tag = (events?[indexPath.row].id)!
+        }
+        cell.backgroundColor = UIColor.appThemeColor2()
         return cell
     }
     
