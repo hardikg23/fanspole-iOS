@@ -91,11 +91,12 @@ class ApiService {
         if let idRange = seriesLeaderBoardURL.range(of: "{id}") {
             seriesLeaderBoardURL.replaceSubrange(idRange, with: String(seriesId))
         }
+        let parameters: Parameters = ["per_page": 50]
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
             "X-Fanspole-Client": "\(Constants.ClientValue)"
         ]
-        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(seriesLeaderBoardURL)", method: .get, headers: headers).validate().responseJSON { response in
+        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(seriesLeaderBoardURL)", method: .get, parameters: parameters, headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -126,14 +127,104 @@ class ApiService {
                         }
                     }
                 }
+                let currentUserData = json["data"]["current_user_data"]
+                let userRank = UserRank()
+                userRank.userId = 1
+                userRank.eventId = seriesId
+                userRank.eventType = "Series"
+                userRank.rank = currentUserData["user_rank"].intValue
+                userRank.score = currentUserData["user_points"].intValue
+                userRank.members = json["data"]["members_count"].intValue
+                try! self.realm.write() {
+                    self.realm.add(userRank, update: true)
+                }
                 completion()
             case .failure(let error):
                 print(error);
             }
         }
+    }
+
+    
+    
+    func fetchMatchLeaderboard(matchId: Int, completion: @escaping () -> ()) {
+        let apiURL = "\(Constants.ApiScheme)://\(Constants.ApiHost)"
         
-        
-        
+        var matchLeaderBoardURL: String = Methods.MatchLeaderBoard
+        if let idRange = matchLeaderBoardURL.range(of: "{id}") {
+            matchLeaderBoardURL.replaceSubrange(idRange, with: String(matchId))
+        }
+        let parameters: Parameters = ["per_page": 50]
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(UserDefaults.standard.getAccessToken())",
+            "X-Fanspole-Client": "\(Constants.ClientValue)"
+        ]
+        Alamofire.request("\(apiURL)\(Constants.ApiVersion)\(matchLeaderBoardURL)", method: .get, parameters: parameters, headers: headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                if let membersJsonArray = json["data"]["members"].array {
+                    for membersJson in membersJsonArray {
+                        
+                        let leaderboardMember = LeaderboardMember()
+                        
+                        let user = User()
+                        user.id = membersJson["id"].intValue
+                        user.name = membersJson["display_name"].stringValue
+                        user.slug = membersJson["slug"].stringValue
+                        user.teamName = membersJson["team_name"].stringValue
+                        user.image = membersJson["image"].stringValue
+                        user.country = membersJson["country"].stringValue
+                        user.level = membersJson["cricket_level"]["level"].intValue
+                        user.levelName = membersJson["cricket_level"]["level_name"].stringValue
+                        
+                        leaderboardMember.userId = membersJson["id"].intValue
+                        leaderboardMember.user = user
+                        leaderboardMember.rank = membersJson["rank"].intValue
+                        leaderboardMember.totalScore = membersJson["total_score"].intValue
+                        leaderboardMember.eventType = "Match"
+                        leaderboardMember.eventId = matchId
+                        
+                        try! self.realm.write() {
+                            self.realm.add(leaderboardMember, update: true)
+                        }
+                    }
+                }
+                let currentUserData = json["data"]["current_user_data"]
+                let userRank = UserRank()
+                userRank.userId = 1
+                userRank.eventId = matchId
+                userRank.eventType = "Match"
+                userRank.rank = currentUserData["user_rank"].intValue
+                userRank.score = currentUserData["user_points"].intValue
+                userRank.members = json["data"]["members_count"].intValue
+                try! self.realm.write() {
+                    self.realm.add(userRank, update: true)
+                }
+                
+                if let currentUserDataArray = json["data"]["current_user_data"]["teams"].array{
+                    for currentUserData in currentUserDataArray {
+                        let userRank = UserRank()
+                        userRank.userId = 1
+                        userRank.eventId = matchId
+                        userRank.eventType = "Match"
+                        userRank.rank = currentUserData["rank"].intValue
+                        userRank.score = currentUserData["score"].intValue
+                        userRank.members = json["data"]["members_count"].intValue
+                        userRank.teamNo = currentUserData["team_no"].intValue
+                        userRank.teamText = currentUserData["team_no_text"].stringValue
+                        
+                        try! self.realm.write() {
+                            self.realm.add(userRank, update: true)
+                        }
+                    }
+                }
+                
+                completion()
+            case .failure(let error):
+                print(error);
+            }
+        }
     }
 
     

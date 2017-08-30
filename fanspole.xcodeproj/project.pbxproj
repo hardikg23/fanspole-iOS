@@ -27,6 +27,8 @@
 		569A34AE1F53186B00B867B9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569A34AD1F53186B00B867B9 /* User.swift */; };
 		569A34B01F531D5100B867B9 /* LeaderboardMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569A34AF1F531D5100B867B9 /* LeaderboardMember.swift */; };
 		569A34B21F531E1300B867B9 /* LeaderboardMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569A34B11F531E1300B867B9 /* LeaderboardMemberCell.swift */; };
+		56B10ABA1F5720C100E4EC3C /* UserRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B10AB91F5720C100E4EC3C /* UserRank.swift */; };
+		56B10ABC1F57246200E4EC3C /* LeaderboardRankTeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B10ABB1F57246200E4EC3C /* LeaderboardRankTeamMemberCell.swift */; };
 		56BF086E1F4B36A2001E92B0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BF086D1F4B36A2001E92B0 /* UIImageView.swift */; };
 		56D6AFD91F51C61400790CE9 /* HomeMunuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6AFD81F51C61400790CE9 /* HomeMunuCell.swift */; };
 		56D6AFDC1F51F23700790CE9 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D6AFDB1F51F23700790CE9 /* ApiService.swift */; };
@@ -60,6 +62,8 @@
 		569A34AD1F53186B00B867B9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		569A34AF1F531D5100B867B9 /* LeaderboardMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardMember.swift; sourceTree = "<group>"; };
 		569A34B11F531E1300B867B9 /* LeaderboardMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardMemberCell.swift; sourceTree = "<group>"; };
+		56B10AB91F5720C100E4EC3C /* UserRank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRank.swift; sourceTree = "<group>"; };
+		56B10ABB1F57246200E4EC3C /* LeaderboardRankTeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardRankTeamMemberCell.swift; sourceTree = "<group>"; };
 		56BF086D1F4B36A2001E92B0 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		56D6AFD81F51C61400790CE9 /* HomeMunuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMunuCell.swift; sourceTree = "<group>"; };
 		56D6AFDB1F51F23700790CE9 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 				56D6AFD81F51C61400790CE9 /* HomeMunuCell.swift */,
 				5684FDAA1F5218F00077C8F1 /* EventContainerCell.swift */,
 				569A34B11F531E1300B867B9 /* LeaderboardMemberCell.swift */,
+				56B10ABB1F57246200E4EC3C /* LeaderboardRankTeamMemberCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				567543B01F4A13520057F3F2 /* Series.swift */,
 				569A34AD1F53186B00B867B9 /* User.swift */,
 				569A34AF1F531D5100B867B9 /* LeaderboardMember.swift */,
+				56B10AB91F5720C100E4EC3C /* UserRank.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 				567543A61F4A107A0057F3F2 /* UIView.swift in Sources */,
 				56BF086E1F4B36A2001E92B0 /* UIImageView.swift in Sources */,
 				567543A21F49FCB70057F3F2 /* Event.swift in Sources */,
+				56B10ABA1F5720C100E4EC3C /* UserRank.swift in Sources */,
 				567543AD1F4A11B90057F3F2 /* Ground.swift in Sources */,
 				5675436E1F49A6990057F3F2 /* LeaderboardController.swift in Sources */,
 				569A34AE1F53186B00B867B9 /* User.swift in Sources */,
@@ -332,6 +339,7 @@
 				569A34B01F531D5100B867B9 /* LeaderboardMember.swift in Sources */,
 				5675437E1F49A7090057F3F2 /* LoginController.swift in Sources */,
 				567543B11F4A13520057F3F2 /* Series.swift in Sources */,
+				56B10ABC1F57246200E4EC3C /* LeaderboardRankTeamMemberCell.swift in Sources */,
 				56D6AFDC1F51F23700790CE9 /* ApiService.swift in Sources */,
 				567543831F49B5E90057F3F2 /* UserDefaults.swift in Sources */,
 				5675436A1F49A6990057F3F2 /* AppDelegate.swift in Sources */,
