@@ -22,6 +22,9 @@ class LeaderboardController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var leaderboardCollectionView: UICollectionView!
     @IBOutlet weak var leaderboardRankTeamCollectionView: UICollectionView!
     
+    @IBOutlet weak var noMemberLable: UILabel!
+    
+    
     let leaderboardMemberCellId = "leaderboardMemberCellId"
     let leaderboardRankTeamMemberCellId = "leaderboardRankTeamMemberCellId"
     
@@ -51,6 +54,8 @@ class LeaderboardController: UIViewController, UICollectionViewDelegate, UIColle
                 self.memberRanks = self.realm.objects(UserRank.self).filter("eventType = 'Series' AND userId = 1 AND eventId = \(self.seriesId!)")
                 self.leaderboardCollectionView.reloadData()
                 self.leaderboardRankTeamCollectionView.reloadData()
+                self.setBackgroundColor()
+                
             }
         }
         
@@ -60,6 +65,7 @@ class LeaderboardController: UIViewController, UICollectionViewDelegate, UIColle
                 self.memberRanks = self.realm.objects(UserRank.self).filter("eventType = 'Match' AND userId = 1 AND eventId = \(self.matchId!)")
                 self.leaderboardCollectionView.reloadData()
                 self.leaderboardRankTeamCollectionView.reloadData()
+                self.setBackgroundColor()
             }
 
         }
@@ -68,9 +74,17 @@ class LeaderboardController: UIViewController, UICollectionViewDelegate, UIColle
         leaderboardRankTeamCollectionView.dataSource = self
         leaderboardCollectionView.delegate = self
         leaderboardRankTeamCollectionView.delegate = self
-        leaderboardCollectionView.backgroundColor = UIColor.lightGray
-        
         setUpNavigationBarAndTabBar()
+    }
+    
+    private func setBackgroundColor() {
+        if self.members?.count == 0{
+            noMemberLable.isHidden = false
+            leaderboardCollectionView.backgroundColor = UIColor.white
+        } else {
+            noMemberLable.isHidden = true
+            leaderboardCollectionView.backgroundColor = UIColor.lightGray
+        }
     }
     
     private func setUpNavigationBarAndTabBar() {

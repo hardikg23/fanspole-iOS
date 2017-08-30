@@ -505,12 +505,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Members" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaC-ED-XZN">
+                                <rect key="frame" x="111" y="173" width="98.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h3o-hd-VKI" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="2KV-FY-sFp"/>
                             <constraint firstItem="3dU-Ww-SEk" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="3ee-qH-JOr"/>
+                            <constraint firstItem="UaC-ED-XZN" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="77p-hJ-mgk"/>
                             <constraint firstItem="3dU-Ww-SEk" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="Bya-eA-0qq"/>
+                            <constraint firstItem="UaC-ED-XZN" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="Bzl-pZ-yDe"/>
                             <constraint firstItem="3dU-Ww-SEk" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="HnD-TI-en3"/>
                             <constraint firstAttribute="trailing" secondItem="3dU-Ww-SEk" secondAttribute="trailing" id="OqR-4T-ucA"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="h3o-hd-VKI" secondAttribute="bottom" id="Re3-ZM-dSc"/>
@@ -522,6 +530,7 @@
                     <connections>
                         <outlet property="leaderboardCollectionView" destination="h3o-hd-VKI" id="gMY-QO-s20"/>
                         <outlet property="leaderboardRankTeamCollectionView" destination="3dU-Ww-SEk" id="O7a-IU-Y6a"/>
+                        <outlet property="noMemberLable" destination="UaC-ED-XZN" id="eAc-zX-X8t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
